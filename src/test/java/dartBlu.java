@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
@@ -37,11 +38,13 @@ public class dartBlu {
         @BeforeEach
         void setUp() {
 
-            // Creo una nuova istanza di Chrome
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
 
-            // Apro Chrome a tutto schermo
-            driver.manage().window().maximize();
+            driver = new ChromeDriver(options);
 
             // Creo il FluentWait
             wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(20)); //attendo l'elemento massimo 10 secondi

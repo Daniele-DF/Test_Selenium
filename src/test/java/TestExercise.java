@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /*
 
@@ -50,11 +52,14 @@ public class TestExercise {
     @BeforeEach
     void setUp() {
 
-        // Creo una nuova istanza di Chrome
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
 
-        // Apro Chrome a tutto schermo
-        driver.manage().window().maximize();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+
+
 
         // Creo il FluentWait
         wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10)); //attendo l'elemento massimo 10 secondi

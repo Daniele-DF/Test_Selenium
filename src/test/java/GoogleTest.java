@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,13 +31,24 @@ WebDriver è un'interfaccia di Selenium che permette di interagire con e control
 
 public class GoogleTest  {
 
+    private WebDriver driver;
+
     @Test
     void googleTest() throws InterruptedException {
 
+
+
         //setup
-     WebDriver driver = new ChromeDriver(); // creo un'istanza di ChromeDriver e la assegno a una variabile di tipo WebDriver.
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+
+
      //action
-     driver.get("https://www.google.com");
+       driver.get("https://www.google.com");
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(15000));
