@@ -46,8 +46,12 @@ public class GoogleTest  {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
 
+        // Creo il browser
+        driver = new ChromeDriver(options);
 
-     //action
+
+
+        //action
        driver.get("https://www.google.com");
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)

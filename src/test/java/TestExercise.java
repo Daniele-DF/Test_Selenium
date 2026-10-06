@@ -59,6 +59,9 @@ public class TestExercise {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
 
+        // Creo il browser
+        driver = new ChromeDriver(options);
+
 
 
         // Creo il FluentWait
