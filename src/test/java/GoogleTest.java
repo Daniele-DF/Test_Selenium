@@ -28,17 +28,14 @@ WebDriver è un'interfaccia di Selenium che permette di interagire con e control
 
 */
 
-
-public class GoogleTest  {
+public class GoogleTest {
 
     private WebDriver driver;
 
     @Test
-    void googleTest() throws InterruptedException {
+    void googleTest() {
 
-
-
-        //setup
+        // SETUP
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments("--headless=new");
@@ -46,37 +43,32 @@ public class GoogleTest  {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
 
-        // Creo il browser
         driver = new ChromeDriver(options);
 
-
-
-        //action
-       driver.get("https://www.google.com");
-
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(15000));
+                .withTimeout(Duration.ofSeconds(15))
+                .pollingEvery(Duration.ofMillis(500));
 
-        // Aspetto che il pulsante "Accetta tutto" sia visibile
-        wait.until(ExpectedConditions.visibilityOfElementLocated( By.id("L2AGLb"))).click();
+        // ACTION
+        driver.get("https://www.google.com");
 
-        //WebElement input = driver.findElement(By.cssSelector("input[placeholder='Cerca con Google o digita un URL']"));
-        //input.sendKeys("Test Automation", Keys.ENTER);
-        //driver.findElement(By.id("input")).sendKeys("Test Automation", Keys.ENTER);
+        // Aspetto il pulsante "Accetta tutto"
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("L2AGLb"))).click();
 
-     //Assertion
-     assertEquals("Google",driver.getTitle());
+        // ASSERT
+        assertEquals("Google", driver.getTitle());
 
-     // ricerca sulla barra di ricerca di google la parola automation tests
-        driver.findElement(By.name("q")).sendKeys("Test Automation", Keys.ENTER);
+        // Ricerca
+        WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
 
-        // validazione soluzione ottenuta
+        searchBox.sendKeys("Test Automation", Keys.ENTER);
 
-        WebElement result = driver.findElement(By.cssSelector("h3"));
+        // Aspetto che compaia il risultato
+        WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3")));
 
         assertEquals("Automazione del collaudo del software", result.getText());
 
-     //CleanUp
-      driver.quit();
+        // CLEANUP
+        driver.quit();
     }
 }

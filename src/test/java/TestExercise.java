@@ -65,7 +65,7 @@ public class TestExercise {
 
 
         // Creo il FluentWait
-        wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10)); //attendo l'elemento massimo 10 secondi
+        wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(20)); //attendo l'elemento massimo 10 secondi
 
         // Rendo disponibile il driver al TestWatcher
        // TestWatcherExtension.driver = driver;
@@ -118,9 +118,8 @@ public class TestExercise {
 
 
         // By.cssSelector
-        List<WebElement> purpleShoes = driver.findElements(By.cssSelector("a[href*='product_id=115']"));
-        WebElement FirstpurpleShoes = purpleShoes.get(0);
-        FirstpurpleShoes.click();
+        WebElement purpleShoe = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href*='product_id=115']")));
+        purpleShoe.click();
 
         //choose the size
 
@@ -349,8 +348,8 @@ public class TestExercise {
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.menu_specials"))).click();
 
             // 3. Controllare che ci sia l'elemento "sale"
-            List<WebElement> saleElements = driver.findElements(By.cssSelector(".sale"));
-            assertFalse(saleElements.isEmpty());
+        WebElement sale = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".sale")));
+        assertTrue(sale.isDisplayed());
 
     }
 
