@@ -53,7 +53,7 @@ public class GoogleTest {
         driver.get("https://www.google.com");
 
         // Aspetto il pulsante "Accetta tutto"
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("L2AGLb"))).click();
+       // wait.until(ExpectedConditions.elementToBeClickable(By.id("L2AGLb"))).click();
 
         // ASSERT
         assertEquals("Google", driver.getTitle());
