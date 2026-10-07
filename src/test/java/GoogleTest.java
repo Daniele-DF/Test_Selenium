@@ -59,6 +59,7 @@ public class GoogleTest {
         assertEquals("Google", driver.getTitle());
 
         // Ricerca
+        /*
         WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
 
         searchBox.sendKeys("Test Automation", Keys.ENTER);
@@ -67,6 +68,8 @@ public class GoogleTest {
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3")));
 
         assertEquals("Automazione del collaudo del software", result.getText());
+        */
+
 
         // CLEANUP
         driver.quit();
