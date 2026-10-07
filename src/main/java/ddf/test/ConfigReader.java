@@ -1,4 +1,5 @@
-package utils;
+
+package ddf.test;
 
 import java.io.InputStream;
 import java.util.Properties;

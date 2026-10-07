@@ -13,10 +13,9 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import utils.ConfigReader;
+import ddf.test.ConfigReader;
 
 public class dartBlu {
-
 
 
 
@@ -220,6 +219,7 @@ public class dartBlu {
             logoutButton.click();
 
             WebElement toastLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+
             assertTrue(toastLogout.isDisplayed());
 
         }
