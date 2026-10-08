@@ -24,4 +24,7 @@ jobs:
           cache: maven
 
       - name: Run Selenium tests
+        env:
+          EMAIL_LOGIN: ${{ secrets.EMAIL_LOGIN }}
+          PASSWORD_LOGIN: ${{ secrets.PASSWORD_LOGIN }}
         run: mvn test
