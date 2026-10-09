@@ -1,4 +1,4 @@
-  ```yaml
+
   name: Selenium Tests
 
   on:
@@ -25,4 +25,4 @@
 
         - name: Stop containers
           if: always()
-          run: docker compose down --volumes --remove-or
+          run: docker compose down --volumes --remove-orphans
