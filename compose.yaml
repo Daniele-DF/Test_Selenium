@@ -1,0 +1,22 @@
+
+services:
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:4444/status"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  tests:
+    build: .
+    depends_on:
+      selenium:
+        condition: service_healthy
+    environment:
+      SELENIUM_REMOTE_URL: http://selenium:4444
+      EMAIL_LOGIN: ${EMAIL_LOGIN:?Imposta EMAIL_LOGIN nel file .env}
+      PASSWORD_LOGIN: ${PASSWORD_LOGIN:?Imposta PASSWORD_LOGIN nel file .env}
+    command: mvn test

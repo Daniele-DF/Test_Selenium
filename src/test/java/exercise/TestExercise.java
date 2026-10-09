@@ -1,5 +1,6 @@
 package exercise;
 
+import ddf.test.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,6 +54,8 @@ public class TestExercise {
     @BeforeEach
     void setUp() {
 
+        /*
+
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments("--headless=new");
@@ -60,9 +63,12 @@ public class TestExercise {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1920,1080");
 
-        // Creo il browser
-        driver = new ChromeDriver(options);
+         // Creo il browser
+        //driver = new ChromeDriver(options);
 
+         */
+
+        driver = DriverFactory.createDriver();
 
 
         // Creo il FluentWait
@@ -258,7 +264,11 @@ public class TestExercise {
         String qty =  quantities[1];
 
         WebElement cartItems = wait.until( ExpectedConditions.visibilityOfElementLocated( By.cssSelector(".topcart .label-orange") ) );
+        System.out.println("qty: " + qty);
+        System.out.println("cartItems: " + cartItems.getText());
         assertEquals(qty, cartItems.getText());
+
+
 
         //remove Element
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.btn.btn-sm.btn-default"))).click();

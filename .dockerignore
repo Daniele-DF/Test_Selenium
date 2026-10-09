@@ -1,0 +1,8 @@
+
+.git
+.idea
+target
+.env
+src/main/resources/config.properties
+src/test/resources/config.properties
+.DS_Store

@@ -1,3 +1,4 @@
+import ddf.test.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,8 @@ public class dartBlu {
         @BeforeEach
         void setUp() {
 
+            /*
+
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
@@ -44,6 +47,10 @@ public class dartBlu {
             options.addArguments("--window-size=1920,1080");
 
             driver = new ChromeDriver(options);
+            */
+
+            driver = DriverFactory.createDriver();
+
 
             // Creo il FluentWait
             wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(20)); //attendo l'elemento massimo 10 secondi

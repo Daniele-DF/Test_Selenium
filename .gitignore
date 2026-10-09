@@ -36,5 +36,6 @@ build/
 .DS_Store
 
 ### Test credentials ###
+.env
 src/test/resources/config.properties
 src/main/resources/config.properties

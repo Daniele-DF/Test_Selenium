@@ -1,6 +1,7 @@
 package dartBlue;
 
 import ddf.test.DartBluPage;
+import ddf.test.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +31,7 @@ public class LoginTest {
     @BeforeEach
     void setUp() {
 
+        /*
         ChromeOptions options = new ChromeOptions();
 
         options.addArguments("--headless=new");
@@ -38,6 +40,11 @@ public class LoginTest {
         options.addArguments("--window-size=1920,1080");
 
         driver = new ChromeDriver(options);
+
+        */
+
+
+        driver = DriverFactory.createDriver();
 
         dartBluPage = new DartBluPage(driver);
 
