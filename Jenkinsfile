@@ -9,11 +9,31 @@ pipeline {
             }
         }
 
-        stage('Verifica ambiente Docker') {
+        stage('Esegui test Selenium') {
             steps {
-                sh '/Users/daniele/.docker/bin/docker --version'
-                sh '/Users/daniele/.docker/bin/docker compose version'
-                sh '/Users/daniele/.docker/bin/docker ps'
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'selenium-test-login',
+                        usernameVariable: 'EMAIL_LOGIN',
+                        passwordVariable: 'PASSWORD_LOGIN'
+                    )
+                ]) {
+                    sh '/Users/daniele/.docker/bin/docker compose up --build --exit-code-from tests tests'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            withCredentials([
+                usernamePassword(
+                    credentialsId: 'selenium-test-login',
+                    usernameVariable: 'EMAIL_LOGIN',
+                    passwordVariable: 'PASSWORD_LOGIN'
+                )
+            ]) {
+                sh '/Users/daniele/.docker/bin/docker compose down --volumes --remove-orphans'
             }
         }
     }
