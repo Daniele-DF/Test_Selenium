@@ -2,6 +2,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/Users/daniele/.docker/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    }
+
     stages {
         stage('Checkout') {
             steps {
