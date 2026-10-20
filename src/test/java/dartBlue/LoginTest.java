@@ -17,7 +17,7 @@ import ddf.test.ConfigReader;
 
 public class LoginTest {
 
-    private static final String BASE_URL = "https://dart-blu.onrender.com";
+    private static final String BASE_URL = "https://dart-blu.vercel.app";
 
     private WebDriver driver;
 

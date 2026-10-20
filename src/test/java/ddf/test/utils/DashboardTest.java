@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DashboardTest {
 
-    private static final String BASE_URL = "https://dart-blu.onrender.com";
+    private static final String BASE_URL = "https://dart-blu.vercel.app";
 
     private WebDriver driver;
 
